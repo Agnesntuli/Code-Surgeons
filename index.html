@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resources & Information Scarcity Platform - Connecting students with essential resources, food support, and educational opportunities">
+    <meta name="keywords" content="student resources, food parcels, education funding, university support, ICT solutions">
+    <meta name="author" content="NWED513 Group Assignment">
+    <title>Resources & Information Scarcity | Student Support Platform</title>
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+    <div id="authContainer" class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 id="authTitle">Welcome Back</h1>
+                <p id="authSubtitle">Sign in to access the Resources Platform</p>
+            </div>
+            
+            <div id="errorMsg" class="error-message" role="alert"></div>
+            <div id="successMsg" class="success-message" role="status"></div>
+            
+            <form id="authForm" novalidate>
+                <div class="form-group" id="nameGroup" style="display: none;">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password" minlength="6">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="authBtn">Sign In</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p id="authSwitchText">Don't have an account? <a onclick="toggleAuthMode()" tabindex="0" role="button">Create one</a></p>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="mainApp" class="app-container hidden">
+        
+        
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="Go to homepage">
+                R.I.S. Platform
+            </div>
+            
+            <button class="nav-toggle" onclick="toggleMobileNav()" role="button" tabindex="0" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-links" id="navLinks">
+                <a onclick="showPage('home')" role="button" tabindex="0" class="active">Home</a>
+                <a onclick="showPage('about')" role="button" tabindex="0">About Us</a>
+                <a onclick="showPage('services')" role="button" tabindex="0">Services</a>
+                <a onclick="showPage('volunteer')" role="button" tabindex="0">Volunteer</a>
+                <a onclick="showPage('donate')" role="button" tabindex="0">Donate</a>
+                <a onclick="showPage('resources')" role="button" tabindex="0">Resources</a>
+                <a onclick="showPage('faq')" role="button" tabindex="0">FAQ</a>
+                <a onclick="showPage('contact')" role="button" tabindex="0">Contact</a>
+                <div class="user-menu">
+                    <div class="user-avatar" id="userAvatar" aria-hidden="true">U</div>
+                    <button class="btn btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="nav-overlay" onclick="toggleMobileNav()" aria-hidden="true"></div>
+
+        
+        <div id="homeView" class="page-view">
+            
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>Empowering Students Through Resource Access</h1>
+                    <p>A comprehensive platform connecting university students with essential resources, food support, menstrual health supplies, and educational funding opportunities.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showPage('services')">Explore Services</button>
+                        <button class="btn btn-hero-secondary" onclick="showPage('about')">Learn More</button>
+                    </div>
+                </div>
+            </section>
+
+            
+            <div class="welcome-banner">
+                <h2>Your Future. Your Strength. Your Support System.</h2>
+                <p>From trusted tertiary education information to vital support for women's needs, we are here to help you rise. When times are tough, our resources offer care, dignity, and hope.</p>
+            </div>
+
+            
+            <section class="main-content">
+                <div class="section-header">
+                    <h2>Our Impact</h2>
+                    <div class="section-divider"></div>
+                    <p>Making a real difference in students' lives every day</p>
+                </div>
+
+                <div class="stats-grid" style="max-width: 800px; margin: 0 auto;">
+                    <div class="stat-item">
+                        <div class="number">500+</div>
+                        <div class="label">Students Supported</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">1,200</div>
+                        <div class="label">Food Parcels Distributed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">50</div>
+                        <div class="label">Active Volunteers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">24/7</div>
+                        <div class="label">Resource Access</div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="main-content">
+                <div class="section-header">
+                    <h2>Quick Access</h2>
+                    <div class="section-divider"></div>
+                    <p>Get the support you need, when you need it</p>
+                </div>
+
+                <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <a href="#" onclick="showPage('services'); return false;" class="quick-access-card">
+                        <div class="quick-access-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+                        </div>
+                        <h4>Food Support</h4>
+                        <p>Weekly food parcels for students in need</p>
+                    </a>
+                    <a href="#" onclick="showPage('services'); return false;" class="quick-access-card">
+                        <div class="quick-access-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5"/></svg>
+                        </div>
+                        <h4>Health Supplies</h4>
+                        <p>Free menstrual products and wellness resources</p>
+                    </a>
+                    <a href="#" onclick="showPage('services'); return false;" class="quick-access-card">
+                        <div class="quick-access-icon" style="background: linear-gradient(135deg, #059669, #047857);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
+                        </div>
+                        <h4>Funding Help</h4>
+                        <p>Scholarships, bursaries, and financial aid</p>
+                    </a>
+                    <a href="#" onclick="showPage('contact'); return false;" class="quick-access-card">
+                        <div class="quick-access-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg>
+                        </div>
+                        <h4>Get in Touch</h4>
+                        <p>Contact our support team for assistance</p>
+                    </a>
+                </div>
+            </section>
+
+            
+            <section class="main-content" id="services">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <div class="section-divider"></div>
+                    <p>Comprehensive support designed to uplift and empower</p>
+                </div>
+                
+                <div class="services-grid">
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        </div>
+                        <h3>Care In Action</h3>
+                        <p>Providing essential food supplies and nutrition support to students facing hardship.</p>
+                    
+                        <div class="service-details" id="careDetails">
+                            <div class="details-content">
+                                <h4>What We Provide</h4>
+                                <ul>
+                                    <li>Weekly food package distribution</li>
+                                    <li>Fresh produce and pantry staples</li>
+                                    <li>Special dietary accommodations</li>
+                                    <li>Emergency meal assistance</li>
+                                </ul>
+                                <h4>How to Access</h4>
+                                <p>Visit our distribution center every Tuesday and Thursday, 9 AM - 5 PM. No appointment needed—just bring student ID and proof of residence.</p>
+                            </div>
+                        </div>
+                    
+                        <button class="btn btn-expand" onclick="toggleDetails('careDetails', this)"><p><a href="Care in action.html">Care in action details</a></p></button>
+                    </div>
+
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                        <h3>Menstrual Health</h3>
+                        <p>Supporting dignity and health through hygiene products and wellness resources.</p>
+                        
+                        <div class="service-details" id="womenDetails">
+                            <div class="details-content">
+                                <h4>Understanding Menstruation</h4>
+                                <p>A menstrual cycle is a monthly process in the female body involving the shedding of the uterine lining. It typically lasts 3-7 days and is a normal, healthy part of reproductive health.</p>
+                                
+                                <h4>Types of Menstrual Products</h4>
+                                <ul>
+                                    <li>Sanitary Pads - Absorbent products for leakage protection</li>
+                                    <li>Reusable Cloth Pads - Eco-friendly, washable options</li>
+                                    <li>Tampons - Internal absorption for active lifestyles</li>
+                                    <li>Menstrual Cups - Sustainable, long-lasting solution</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-expand" onclick="toggleDetails('womenDetails', this)"><a href="Menstrual Cycle Guide.html">Learn More</a></button>
+                    </div>
+
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <h3>University Funding</h3>
+                        <p>Opening doors through bursaries, scholarships, and comprehensive school support.</p>
+                        
+                        <div class="service-details" id="eduDetails">
+                            <div class="details-content">
+                                <h4>Financial Support Options</h4>
+                                <ul>
+                                    <li>Merit-based scholarships</li>
+                                    <li>Need-based bursaries</li>
+                                    <li>Work-study programs</li>
+                                    <li>Emergency student funds</li>
+                                </ul>
+                                <h4>Application Process</h4>
+                                <p>Contact our financial aid office for personalized guidance on available funding options and application requirements.</p>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-expand" onclick="toggleDetails('eduDetails', this)"><a href="Edupath.html">Learn More</a></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="aboutView" class="page-view hidden">
+            <section class="main-content">
+                <div class="section-header">
+                    <h2>About Us</h2>
+                    <div class="section-divider"></div>
+                    <p>Building bridges, breaking barriers, and creating opportunities</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h3>Our Mission</h3>
+                        <p>The Resources & Information Scarcity Platform was founded with a simple yet powerful mission: to ensure that no university student goes without essential resources due to financial constraints.</p>
+                        <p>We believe that access to food, hygiene products, and educational support should not be privileges but fundamental rights for all students pursuing higher education.</p>
+                    </div>
+                    <div class="about-image">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-image">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="about-content">
+                        <h3>Our Vision</h3>
+                        <p>We envision a future where every student, regardless of their financial background, has equal access to the resources they need to succeed academically and maintain their dignity and wellbeing.</p>
+                        <p>Through technology, community partnerships, and dedicated volunteers, we are building a sustainable support system that empowers students to focus on their education rather than their basic survival needs.</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: var(--space-3xl);">
+                    <h3>Our Team</h3>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-avatar">JD</div>
+                        <h4>Agnes Ntuli</h4>
+                        <h4>Gift Manyatsha</h4>
+                        <p>Back-end and Front-end developer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">MS</div>
+                        <h4>Phiwokuhle Mngomezulu</h4>
+                        <h4>Nobuhle Mile</h4>
+                        <h4>Nhlahla Ndweni</h4>
+                        <p>Operations Manager</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">SJ</div>
+                        <h4>Toka Monareng</h4>
+                        <h4>Phiwokuhle Nkosi</h4>
+                        <p>Community Liaison</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">DW</div>
+                        <h4>Nombuso Mdluli</h4>
+                        <h4>Nontobeko Ntuli</h4>
+                        <h4>Ntando Ntombela</h4>
+                        <p>Technical Lead</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="servicesView" class="page-view hidden">
+            <section class="hero-section" style="padding: var(--space-3xl) var(--space-xl);">
+                <div class="hero-content">
+                    <h1>Our Services</h1>
+                    <p>Comprehensive support programs designed to address the diverse needs of university students</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        </div>
+                        <h3>Care In Action</h3>
+                        <p>Providing essential food supplies and nutrition support to students facing hardship.</p>
+                        <div class="service-details" id="careDetailsFull">
+                            <div class="details-content">
+                                <h4>What We Provide</h4>
+                                <ul>
+                                    <li>Weekly food package distribution</li>
+                                    <li>Fresh produce and pantry staples</li>
+                                    <li>Special dietary accommodations</li>
+                                    <li>Emergency meal assistance</li>
+                                </ul>
+                                <h4>Distribution Schedule</h4>
+                                <p>Tuesday and Thursday, 9 AM - 5 PM at the Student Support Center. Bring student ID and proof of residence.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-expand" onclick="toggleDetails('careDetailsFull', this)">Learn More</button>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                        <h3>Menstrual Health</h3>
+                        <p>Supporting dignity and health through hygiene products and wellness resources.</p>
+                        <div class="service-details" id="womenDetailsFull">
+                            <div class="details-content">
+                                <h4>Products Available</h4>
+                                <ul>
+                                    <li>Sanitary pads (regular and overnight)</li>
+                                    <li>Tampons (various absorbencies)</li>
+                                    <li>Menstrual cups</li>
+                                    <li>Reusable cloth pads</li>
+                                    <li>Pain relief medication</li>
+                                </ul>
+                                <h4>How to Access</h4>
+                                <p>Visit the Women's Wellness Center on campus. All products are provided free of charge with no questions asked.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-expand" onclick="toggleDetails('womenDetailsFull', this)">Learn More</button>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <h3>University Funding</h3>
+                        <p>Opening doors through bursaries, scholarships, and comprehensive school support.</p>
+                        <div class="service-details" id="eduDetailsFull">
+                            <div class="details-content">
+                                <h4>Funding Options</h4>
+                                <ul>
+                                    <li>Merit-based scholarships</li>
+                                    <li>Need-based bursaries</li>
+                                    <li>Work-study programs</li>
+                                    <li>Emergency student funds</li>
+                                    <li>Textbook assistance programs</li>
+                                </ul>
+                                <h4>Application Process</h4>
+                                <p>Schedule a consultation with our financial aid advisor to explore available options and receive personalized guidance on applications.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-expand" onclick="toggleDetails('eduDetailsFull', this)">Learn More</button>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </div>
+                        <h3>Academic Support</h3>
+                        <p>Tutoring, study groups, and academic resources to help students succeed.</p>
+                        <div class="service-details" id="academicDetails">
+                            <div class="details-content">
+                                <h4>Available Support</h4>
+                                <ul>
+                                    <li>Peer tutoring programs</li>
+                                    <li>Study skills workshops</li>
+                                    <li>Writing center assistance</li>
+                                    <li>Exam preparation sessions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn btn-expand" onclick="toggleDetails('academicDetails', this)">Learn More</button>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h3>Mental Health</h3>
+                        <p>Counseling services and mental health resources for student wellbeing.</p>
+                        <div class="service-details" id="mentalDetails">
+                            <div class="details-content">
+                                <h4>Services Offered</h4>
+                                <ul>
+                                    <li>Individual counseling sessions</li>
+                                    <li>Group therapy sessions</li>
+                                    <li>Crisis intervention</li>
+                                    <li>Stress management workshops</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn btn-expand" onclick="toggleDetails('mentalDetails', this)">Learn More</button>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h3>Housing Assistance</h3>
+                        <p>Help finding affordable and safe housing options for students.</p>
+                        <div class="service-details" id="housingDetails">
+                            <div class="details-content">
+                                <h4>Housing Support</h4>
+                                <ul>
+                                    <li>Affordable housing listings</li>
+                                    <li>Rental assistance programs</li>
+                                    <li>Emergency shelter referrals</li>
+                                    <li>Tenancy rights education</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn btn-expand" onclick="toggleDetails('housingDetails', this)">Learn More</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="volunteerView" class="page-view hidden">
+            <section class="hero-section" style="padding: var(--space-3xl) var(--space-xl);">
+                <div class="hero-content">
+                    <h1>Volunteer With Us</h1>
+                    <p>Make a difference in the lives of students by contributing your time and skills</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+                <div class="volunteer-card">
+                    <div class="section-header">
+                        <h2>Join Our Volunteer Team</h2>
+                        <div class="section-divider"></div>
+                        <p>Our volunteers are the heart of our operations, helping us deliver essential services to students in need.</p>
+                    </div>
+
+                    <div class="volunteer-benefits">
+                        <div class="benefit-item">
+                            <h4>Flexible Scheduling</h4>
+                            <p>Choose hours that work with your schedule. We offer morning, afternoon, and evening shifts.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Meaningful Impact</h4>
+                            <p>See the direct impact of your contribution on students' lives and academic success.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Skill Development</h4>
+                            <p>Gain valuable experience in community service, event coordination, and client support.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Community Connection</h4>
+                            <p>Meet like-minded individuals and build relationships within the university community.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md);">Volunteer Opportunities</h3>
+                    <ul>
+                        <li><strong>Food Distribution Assistants:</strong> Help sort, pack, and distribute food parcels</li>
+                        <li><strong>Event Coordinators:</strong> Plan and execute fundraising and awareness events</li>
+                        <li><strong>Mentors:</strong> Provide academic and personal guidance to students</li>
+                        <li><strong>Administrative Support:</strong> Assist with data entry, communications, and office tasks</li>
+                        <li><strong>Social Media Ambassadors:</strong> Help spread awareness through digital channels</li>
+                    </ul>
+
+                    <div style="margin-top: var(--space-xl);">
+                        <form class="contact-form" onsubmit="handleVolunteerSubmit(event)">
+                            <div class="form-group">
+                                <label for="volName">Full Name</label>
+                                <input type="text" id="volName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="volEmail">Email Address</label>
+                                <input type="email" id="volEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="volInterest">Area of Interest</label>
+                                <select id="volInterest" required>
+                                    <option value="">Select an area</option>
+                                    <option value="food">Food Distribution</option>
+                                    <option value="events">Event Coordination</option>
+                                    <option value="mentoring">Mentoring</option>
+                                    <option value="admin">Administrative Support</option>
+                                    <option value="social">Social Media</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="volMessage">Why do you want to volunteer?</label>
+                                <textarea id="volMessage" placeholder="Tell us about your motivation..." required rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="donateView" class="page-view hidden">
+            <section class="hero-section" style="padding: var(--space-3xl) var(--space-xl);">
+                <div class="hero-content">
+                    <h1>Support Our Cause</h1>
+                    <p>Your generosity helps us continue providing essential resources to students in need</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+                <div class="donate-card">
+                    <div class="section-header">
+                        <h2>Make a Donation</h2>
+                        <div class="section-divider"></div>
+                        <p>Every contribution, no matter the size, makes a real difference in a student's life.</p>
+                    </div>
+
+                    <h3 style="margin-bottom: var(--space-md);">Select Donation Amount</h3>
+                    <div class="donation-options">
+                        <div class="donation-option" onclick="selectDonation(this, 50)">
+                            <h4>R50</h4>
+                            <p>Provides hygiene products for one student</p>
+                        </div>
+                        <div class="donation-option selected" onclick="selectDonation(this, 100)">
+                            <h4>R100</h4>
+                            <p>Contributes to a food parcel</p>
+                        </div>
+                        <div class="donation-option" onclick="selectDonation(this, 250)">
+                            <h4>R250</h4>
+                            <p>Funds educational materials</p>
+                        </div>
+                        <div class="donation-option" onclick="selectDonation(this, 500)">
+                            <h4>R500</h4>
+                            <p>Sponsors a full food package</p>
+                        </div>
+                        <div class="donation-option" onclick="selectDonation(this, 1000)">
+                            <h4>R1000</h4>
+                            <p>Supports emergency assistance fund</p>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" onsubmit="handleDonationSubmit(event)" style="max-width: 500px; margin: var(--space-xl) auto 0;">
+                        <div class="form-group">
+                            <label for="donName">Full Name</label>
+                            <input type="text" id="donName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="donEmail">Email Address</label>
+                            <input type="email" id="donEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="donPhone">Phone Number (Optional)</label>
+                            <input type="tel" id="donPhone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="donAmount">Donation Amount (R)</label>
+                            <input type="number" id="donAmount" value="100" min="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="donMessage">Personal Message (Optional)</label>
+                            <textarea id="donMessage" placeholder="Leave a message of encouragement..." rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Proceed with Donation</button>
+                    </form>
+
+                    <div style="text-align: center; margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--gray-200);">
+                        <h4>Other Ways to Help</h4>
+                        <p style="color: var(--gray-500); margin-top: var(--space-sm);">You can also donate food items, clothing, or school supplies directly to our distribution center.</p>
+                        <p style="color: var(--gray-500);">Contact us at <strong>068 261 3833</strong> to arrange a drop-off.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="resourcesView" class="page-view hidden">
+            <section class="hero-section" style="padding: var(--space-3xl) var(--space-xl);">
+                <div class="hero-content">
+                    <h1>Resource Library</h1>
+                    <p>Access helpful guides, documents, and information to support your journey</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+                <div class="section-header">
+                    <h2>Helpful Resources</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <span class="resource-type">Guide</span>
+                        <h4>Student Financial Aid Guide</h4>
+                        <p>Comprehensive guide to applying for NSFAS, bursaries, and scholarships.</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Guide</span>
+                        <h4>Budgeting for Students</h4>
+                        <p>Practical tips for managing finances and stretching your budget.</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Fact Sheet</span>
+                        <h4>Menstrual Health Facts</h4>
+                        <p>Educational information about menstrual health and available products.</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Guide</span>
+                        <h4>Healthy Eating on a Budget</h4>
+                        <p>Nutritious meal ideas and shopping tips for students.</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Directory</span>
+                        <h4>Mental Health Resources</h4>
+                        <p>List of counseling services and mental health support hotlines.</p>
+                        <a href="#" class="resource-link">View Directory</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Guide</span>
+                        <h4>Study Skills Handbook</h4>
+                        <p>Effective study techniques and time management strategies.</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Template</span>
+                        <h4>Cover Letter Templates</h4>
+                        <p>Professional templates for job and internship applications.</p>
+                        <a href="#" class="resource-link">Download Templates</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="resource-type">Guide</span>
+                        <h4>Housing Rights Guide</h4>
+                        <p>Know your rights as a tenant and how to find safe housing.</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="faqView" class="page-view hidden">
+            <section class="hero-section" style="padding: var(--space-3xl) var(--space-xl);">
+                <div class="hero-content">
+                    <h1>Frequently Asked Questions</h1>
+                    <p>Find answers to common questions about our services and programs</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+                <div class="faq-list">
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>Who is eligible for food parcels?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Food parcels are available to all registered university students who can demonstrate financial need. This includes self-funded students, those awaiting funding, and students experiencing unexpected financial hardship. You will need to provide proof of student status and may be asked to provide documentation of your financial situation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>How often can I receive a food parcel?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Students can receive one food parcel per week. Each parcel is designed to supplement your nutritional needs for approximately 5-7 days. In emergency situations, additional support may be available - please contact our team to discuss your specific circumstances.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>Are menstrual products really free?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Yes, all menstrual products are provided completely free of charge to any student who needs them. There are no eligibility requirements, no questions asked. We believe that access to menstrual products is a basic necessity and a matter of dignity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>How do I apply for emergency funding?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Emergency funding applications are handled on a case-by-case basis. Contact our office to schedule a confidential consultation with our financial aid advisor. Bring any relevant documentation of your emergency situation, and we will work with you to identify available resources and support options.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>Can I volunteer if I'm not a student?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Absolutely! We welcome volunteers from all backgrounds, including community members, alumni, and faculty. All volunteers undergo a brief orientation and are matched with roles that suit their skills and availability.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>How can I donate food items instead of money?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We gladly accept donations of non-perishable food items, personal hygiene products, and cleaning supplies. Please contact us to arrange a drop-off time. We particularly welcome rice, pasta, canned goods, peanut butter, cooking oil, soap, and toilet paper.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>Is my information kept confidential?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Yes, we take privacy very seriously. All information you provide is kept strictly confidential and is only used to facilitate the services you request. Your use of our services will not be disclosed to anyone outside our organization without your explicit consent.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question">
+                            <span>What are your operating hours?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Our main distribution center is open Tuesday and Thursday from 9:00 AM to 5:00 PM. The administrative office operates Monday through Friday, 8:00 AM to 4:00 PM. For emergencies outside of these hours, please call our helpline at 068 261 3833.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="contactView" class="page-view hidden">
+            <section class="hero-section" style="padding: var(--space-3xl) var(--space-xl);">
+                <div class="hero-content">
+                    <h1>Contact Us</h1>
+                    <p>We're here to help. Reach out with any questions or inquiries.</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+                <div class="contact-container">
+                    <h2>Get In Touch</h2>
+                    <p>Have questions or need assistance? We're here to help. Reach out to us and we'll respond as soon as possible.</p>
+                    
+                    <form class="contact-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+<input type="text" id="contactName" placeholder="Agnes Ntuli" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" id="contactEmail" placeholder="agnes@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" placeholder="How can we help?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" placeholder="Tell us more about your inquiry..." required rows="5"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <h4>Address</h4>
+                            <p>123 Community Street<br>City, State 12345</p>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <h4>Phone</h4>
+                            <p>068 261 3833</p>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <h4>Email</h4>
+<p>agnesntuli29@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <h4>Hours</h4>
+                            <p>Mon-Fri: 9AM - 6PM</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="termsView" class="page-view hidden">
+            <section class="main-content">
+                <div class="terms-container">
+                    <h1>Terms and Conditions</h1>
+                    <h2>Last updated: 3 April 2026</h2>
+                    
+                    <div class="terms-content">
+                        <p>This platform provides information and resources aimed at raising awareness about resources and information scarcity affecting students.</p>
+
+                        <p>The information available on this platform is provided for educational and awareness purposes only. While we strive to ensure that all content is accurate, relevant and reliable.</p>
+
+                        <p>Users must acknowledge that resources shared through the platform may be limited and subjected to availability. Access to certain information or support may vary depending on geographical location, institutional capacity or external factors beyond our control.</p>
+
+                        <p>We reserve the right to modify, update or remove content at any time without prior notice. Continued use of the platform after changes have been made constitutes acceptance of those changes.</p>
+
+                        <p>By continuing to use this website you agree to use the information responsibly and not engage in activities that may spread misinformation, misuse resources or harm other users.</p>
+
+                        <p>By accessing and using this website you agree to comply with the terms outlined above. If you do not agree with these terms you should discontinue the use of this website.</p>
+                    </div>
+                    
+                    <div class="terms-footer">
+                        <button class="btn btn-secondary" onclick="showPage('home')">Back to Home</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Resources & Information Scarcity</h4>
+                    <p>Building bridges, breaking barriers, and creating opportunities for all members of our community.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a onclick="showPage('about')">About Us</a></p>
+                    <p><a onclick="showPage('services')">Our Services</a></p>
+                    <p><a onclick="showPage('volunteer')">Volunteer</a></p>
+                    <p><a onclick="showPage('donate')">Donate</a></p>
+                    <p><a onclick="showPage('contact')">Contact Us</a></p>
+                    <p><a onclick="showPage('terms')">Terms & Conditions</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <p><a onclick="showPage('resources')">Resource Library</a></p>
+                    <p><a onclick="showPage('faq')">FAQ</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Call Us: 068 261 3833</p>
+                    <p>Email: agnesntuli29@gmail.com</p>
+                    <p>123 Community Street</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a onclick="showPage('home')">Home</a>
+                    <a onclick="showPage('about')">About</a>
+                    <a onclick="showPage('services')">Services</a>
+                    <a onclick="showPage('contact')">Contact</a>
+                    <a onclick="showPage('terms')">Terms</a>
+                </div>
+                <p>&copy; 2026 Resources & Information Scarcity Platform. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    
+    <div id="toast" class="toast"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Care In Action - Providing essential food supplies and nutrition support to students facing hardship">
+    <meta name="keywords" content="care in action, food parcels, student support, nutrition, university">
+    <title>Care In Action | Resources & Information Scarcity</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+       
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #06b6drgb(64, 63, 83)
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray-700: #374151;
+            --gray-600: #475569;
+            --gray-500: #64748b;
+            --gray-400: #94a3b8;
+            --gray-300: #cbd5e1;
+            --gray-200: #e2e8f0;
+            --gray-100: #f1f5f9;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --glass-solid: rgba(255, 255, 255, 0.95);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 80px;
+        }
+
+       
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            top: 50%;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent);
+            bottom: -100px;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--space-md) var(--space-xl);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-back {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .content-card {
+            background: var(--glass-solid);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-card h1 {
+            font-size: 2.25rem;
+            color: var(--dark);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+
+        .content-card h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .content-card h2 .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .content-card p {
+            color: var(--gray-600);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card ul {
+            margin-left: var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card li {
+            color: var(--gray-600);
+            font-size: 1rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: var(--space-md);
+            margin-bottom: var(--space-xs);
+        }
+
+        .content-card li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Procedure Steps */
+        .procedure-steps {
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+
+        .step {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            padding: var(--space-md);
+            background: var(--white);
+            border-radius: var(--radius);
+            transition: transform 0.2s;
+        }
+
+        .step:hover {
+            transform: translateX(8px);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .step-content h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .step-content p {
+            color: var(--gray-500);
+            font-size: 0.9375rem;
+            margin: 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--gray-100);
+            border-radius: var(--radius);
+        }
+
+        .stat-item .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item .label {
+            color: var(--gray-500);
+            font-size: 0.8125rem;
+            margin-top: var(--space-xs);
+        }
+
+        /* Donation Banner */
+        .donation-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            color: var(--white);
+            margin: var(--space-xl) 0;
+        }
+
+        .donation-banner h2 {
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        .donation-banner p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+        }
+
+        .donation-banner .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--white);
+            color: var(--primary);
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .donation-banner .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--white);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: var(--space-md);
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-sm);
+            }
+
+            .main-content {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .content-card {
+                padding: var(--space-lg);
+            }
+
+            .content-card h1 {
+                font-size: 1.75rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.25rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="bg-animation" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Care In Action</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#contact">Contact</a>
+            <button class="btn-back" onclick="window.location.href='index.html'">← Back</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <article class="content-card">
+            <h1> Care In Action</h1>
+            
+            <p><strong>Care In Action</strong> is an initiative that turns compassion into practical support by helping people in need. It focuses on providing food parcels to individuals and families facing hunger while promoting kindness and social responsibility.</p>
+
+            <h2> Vision and Mission Statement</h2>
+            <p>Care in Action aims to build a compassionate community where no one goes hungry by providing food parcels to those in need. We are committed to turning empathy into practical support through the collection and distribution of essential food items. Our goal is to promote dignity, kindness, and social responsibility while making a meaningful difference in people's lives.</p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="number">500+</div>
+                    <div class="label">Students Supported</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">1200</div>
+                    <div class="label">Food Parcels Distributed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">50</div>
+                    <div class="label">Active Volunteers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">2</div>
+                    <div class="label">Distribution Days/Week</div>
+                </div>
+            </div>
+
+            <h2> Typical Content of Food Parcels</h2>
+            <p>The food parcels provided by Care in Action are designed to supply a balanced range of essential nutrients needed for good health.</p>
+            
+            <ul>
+                <li><strong>Carbohydrates:</strong> Rice, maize meal, and pasta for energy</li>
+                <li><strong>Proteins:</strong> Beans, lentils, canned fish, or peanut butter for growth and body repair</li>
+                <li><strong>Healthy Fats:</strong> Cooking oil or spreads for energy storage and brain function</li>
+                <li><strong>Vitamins & Minerals:</strong> Canned vegetables and fruits for immune system support</li>
+                <li><strong>Fibre:</strong> Whole grains and legumes for digestive health</li>
+            </ul>
+
+            <p>Altogether, these nutrients help ensure that individuals and families receive a balanced diet that supports their physical health, energy levels, and well-being.</p>
+
+            <h2><span class="icon">👤</span> Who Qualifies for Food Parcels?</h2>
+            <p>This project is designed to support university students who are financially vulnerable, particularly those who are not receiving funding from bursaries or the National Student Financial Aid Scheme (NSFAS).</p>
+            
+            <p>To ensure that assistance reaches those who need it most, students are required to provide valid proof from their student portal confirming that they are not funded. This verification process helps maintain fairness and transparency while allowing Care in Action to effectively provide food parcels to students facing financial challenges.</p>
+
+            <h2><span class="icon">📋</span> Procedure to Receive Support</h2>
+            
+            <div class="procedure-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Application Submission</h4>
+                        <p>Students must apply for assistance by completing a simple request form provided by the Care in Action team.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Proof of Eligibility</h4>
+                        <p>Applicants are required to submit proof from their student portal confirming that they are not funded by any bursary or NSFAS.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Verification Process</h4>
+                        <p>The submitted documents will be reviewed to ensure that the student qualifies for support.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Approval Notification</h4>
+                        <p>Successful applicants will be notified through email or messaging platforms with details about collection.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Collection of Food Parcel</h4>
+                        <p>Students must collect their food parcels at the designated time and location, and may be required to present their student ID for confirmation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2><span class="icon">📅</span> Distribution Schedule</h2>
+            <p>Food parcels are distributed every <strong>Tuesday and Thursday</strong> from <strong>9:00 AM to 5:00 PM</strong> at the Student Support Center. No appointment is needed—just bring your student ID and proof of residence.</p>
+
+            <div class="donation-banner">
+                <h2> Support Our Cause</h2>
+                <p>We welcome and highly appreciate any donations to support the Care in Action feeding scheme. Whether it's non-perishable food items like rice, pasta, canned goods, or monetary contributions, every donation helps provide nutritious food parcels to university students in need.</p>
+                <a href="index.html#contact" class="btn">Contact Us to Donate</a>
+            </div>
+
+            <h2><span class="icon"></span> Conclusion</h2>
+            <p>Care in Action provides essential support to financially vulnerable university students by offering nutritious food parcels. This initiative not only addresses hunger but also promotes compassion, social responsibility, and community involvement. By working together, we can make a meaningful difference in the lives of students in need.</p>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Care In Action | Resources & Information Scarcity Platform</p>
+        <p>Building bridges, breaking barriers, and creating opportunities for all.</p>
+    </footer>
+</body>
+</html>

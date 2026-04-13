@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Care In Action - Providing essential food supplies and nutrition support to students facing hardship">
+    <meta name="keywords" content="care in action, food parcels, student support, nutrition, university">
+    <title>Care In Action | Resources & Information Scarcity</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+       
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #06b6drgb(64, 63, 83)
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray-700: #374151;
+            --gray-600: #475569;
+            --gray-500: #64748b;
+            --gray-400: #94a3b8;
+            --gray-300: #cbd5e1;
+            --gray-200: #e2e8f0;
+            --gray-100: #f1f5f9;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --glass-solid: rgba(255, 255, 255, 0.95);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 80px;
+        }
+
+       
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            top: 50%;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent);
+            bottom: -100px;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--space-md) var(--space-xl);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-back {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .content-card {
+            background: var(--glass-solid);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-card h1 {
+            font-size: 2.25rem;
+            color: var(--dark);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+
+        .content-card h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .content-card h2 .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .content-card p {
+            color: var(--gray-600);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card ul {
+            margin-left: var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-card li {
+            color: var(--gray-600);
+            font-size: 1rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: var(--space-md);
+            margin-bottom: var(--space-xs);
+        }
+
+        .content-card li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Procedure Steps */
+        .procedure-steps {
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+
+        .step {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            padding: var(--space-md);
+            background: var(--white);
+            border-radius: var(--radius);
+            transition: transform 0.2s;
+        }
+
+        .step:hover {
+            transform: translateX(8px);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .step-content h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .step-content p {
+            color: var(--gray-500);
+            font-size: 0.9375rem;
+            margin: 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--gray-100);
+            border-radius: var(--radius);
+        }
+
+        .stat-item .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item .label {
+            color: var(--gray-500);
+            font-size: 0.8125rem;
+            margin-top: var(--space-xs);
+        }
+
+        /* Donation Banner */
+        .donation-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            color: var(--white);
+            margin: var(--space-xl) 0;
+        }
+
+        .donation-banner h2 {
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        .donation-banner p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+        }
+
+        .donation-banner .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--white);
+            color: var(--primary);
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .donation-banner .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--white);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: var(--space-md);
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-sm);
+            }
+
+            .main-content {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .content-card {
+                padding: var(--space-lg);
+            }
+
+            .content-card h1 {
+                font-size: 1.75rem;
+            }
+
+            .content-card h2 {
+                font-size: 1.25rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="bg-animation" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Edupath</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#contact">Contact</a>
+            <button class="btn-back" onclick="window.location.href='index.html'">← Back</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <article class="content-card">
+            <h1>Edupath</h1>
+            <h3>Section 1</h3>
+            <h2>Bursaries and Bursary loans</h2>
+            <p>Want to learn a thing or two about Bursaries and Bursary loans, well rest assured because here in this section, you will 
+                then know even the smallest details regardless of if you were to be experienced or as a beginner based on how to interact
+                 with BURSARIES NOR BURSARY LOANS</p>
+                 <br>
+            <h2>NOW WHAT IS A BURSARY</h2>
+            <p>Now a Bursary is a non-repayable grant or financial award given to students to fund their studies. It is typically awarded
+                 based financial need, academic merit, or some specifics, often in demand fields of study.</p>
+            <p>Repayment: Usually non-repayable, means you won’t need to pay back the money after graduating.</p> 
+            <p>Conditions: Some certain bursaries may include “Conditions”, meaning many corporate bursaries require a “Work-back” an 
+                agreement, where you agree to work for the company for a set period (e.g., one year of work for every year of funding).</p> 
+            <br>
+            <p>Maintenance: Bursaries often need to maintain a certain academic average to keep the funding, meaning you should work hard 
+                on your studies to keep a stable grade that can be funded.</p>
+            <p>Coverage: Can be partial (as in paying fir tuitions only) or full (as in paying for tuition, accommodation, meals, and 
+                books)</p> 
+            <br>
+            <h2>What is a Bursary Loan?</h2>
+            <p>Repayment: Must be paid, usually starting after you graduate and star working.</p>
+            <p>Interest: Accrues interest, increasing the total amount you pay back.</p>
+            <p>Requirements: Usually require a co-signer (e.g., Parent or Guardian) with good credit to stand surety.</p>
+            <br>
+            <h2>Major Funding Sources in South Africa</h2>
+            <p>NSFAS (National Student Financial Aid Scheme:</p>
+            <p>Provides funding to students with a combined household income of less than R350,000 per annum. This is now a grant-based
+                 system, meaning it does not need to be repaid if you pass.</p>
+            <p>Corporated Bursaries: Companies like Sasol, Eskom, Transnet, and Bank offer bursaries, often in specialized fields to secure
+                 future employees.</p>
+            <p>University Financial Aid: Offices at universities provide internal bursaries and scholarships based on merit or need.</p>
+            <p>Bank Student Loan: Commercial banks (e.g., FNB, Standard Bank, Absa, Nedbank) offer loans, typically to cover tuition and 
+                study materials.</p>
+            <br>
+            <h2>Tips for Applying</h2>
+            <p>Apply Early: Many Bursaries close 12 months in advance of students, often between August and December.</p>
+            <p>Check requirements: Ensure your field of study matches the bursary focus (e.g., Funza Lushaka for Education)</p>
+            <p>Prepare Documents: Have certified copies of your ID, Matric results, and parents proof of income ready.</p>
+            <p>Draft a Strong Motivational Letter: Clearly explain why you need or deserve the Funding.</p>
+            <p>Never pay to Apply: Legitimate Bursaries do not charge application fees.</p> 
+            <br>
+            <h2>What to do if you Fail?</h2>
+            <p>Bursary: You may lose funding or be required to pay back some of the funds if you violate the agreement.</p> 
+            <p>Loan: The debt still remains and must still be repaid.</p>
+            <br>
+            <h2>Section 2</h2>
+            <h3>Well now, what are Scholarships?</h3>
+            <p>Well Scholarships are/is: The first step towards reducing student debt. Scholarships are financial gifts awarded to students
+                 based on merit, need, or specific criteria (such as talent, community involvement, or field of study) that do not need to be
+                  repaid.</p>
+            <br>
+            <h2>What are the key types of Scholarships?</h2>
+            <p>Merit-Based: Awarded for academic achievements, high grades, or stella test scores.</p>
+            <p>Need-Based: Awarded based on financial need of the student or their families.</p>
+            <p>Talent/Activity-Based: Awarded for extracurricular activities like sports, music, or leadership (e.g., Kovsie Sport Bursary).</p>
+            <p>Niche Scholarships: Targeted toward specific demographics, fields of study (e.g., STEM), or unique backgrounds.</p> 
+            <p>Corporated/ Private Scholarships: Offered by companies or organizations (e.g., Old Mutual, Amazon, etc.).</p>
+            <br>
+            <h2>Where to start looking for Scholarships?</h2>
+            <p>University Financial Aid: This is the best place to start, as universities often offer scholarships specifically for their incoming and existing students.</p>
+            <p>Online Databases: Use sites like Fastweb, Scholarships.com, and Cappex to filter opportunities.</p>
+            <p>Local Community: Look for Scholarships from local businesses, foundations, and community organizations, as these often 
+                have fewer applicants.</p>
+            <br>
+            <h2>Key tips for Beginner Applicants</h2>
+            <p>Start early: Being your search and application process at least a year in advance if possible.</p> 
+            <p>Stay organized: Create a calendar to track application deadlines, as missing one could result in disqualification.</p>
+            <p>Read Instructions Carefully: Ensure you fulfill all requirements (e.g., Letters of recommendation, transcripts) to avoid 
+                unnecessary disqualifications.</p>
+            <p>Apply for many: Do not limit yourself to only one or two applications, as you can apply for multiple Scholarships 
+                simultaneously.</p>
+            <br>
+            <h2>Common misconceptions</h2>
+            <p>“Only top students get scholarships.”: Well, that is a FALSE statement. Many scholarships are based on community involvement,
+                 unique talents, or financial needs.</p>
+            <p>“Scholarships only cover tuition.”:  Also, a FALSE statement. Some scholarships can cover textbooks, accommodation, and 
+                living costs.</p>
+            <p>“Cannot apply too many.”:  FALSE. You are encouraged to apply to many scholarships to increase your chance of winning.</p>
+            <br>
+            <p>Essential Steps for a Winning Application</p>
+            <p>Write a compelling essay: Share your personal story, goals, and why you deserve the award, ensuring that it is authentic 
+                and well-written.</p>
+            <p>Can speak to your character and achievements.</p>
+            <p>Proofread: Check all documents for errors before submission.</p>
+            <p>Now, from the two sections that you have gone through, let us see on how they can be of assistance when it comes to Tertiary 
+                Institutions.</p>
+            <br>
+            <h2>Section 3</h2>
+            <h3>University/Collage Applications for Beginners</h3>
+            <h3>1 Research and Preparations (Before You Apply)</h3>
+            <p>Explore Options: Look at prospectuses, attend university open days, and use university websites to identify suitable
+                 courses.</p>
+            <p>Check Requirements: Ensure you meet the minimum academic standards (e.g., Admission Point Score- APS) for your chosen 
+                courses.</p>
+            <p>Identify Deadlines: summarize ways to create notes for closing dates and students’ accommodation.</p>
+            <p>Start to Apply Early: Applying early increases your chances, especially for competitive courses like Engineering or 
+                Nursing, which fill up fast.</p>
+            <br>
+            <h2>2 Gather Necessary Documents</h2>
+            <h3>Most Universities need Certified copies of the following documents to be uploaded:</h3>
+            <p>ID Document: A certified copy of your ID.</p>
+            <p>School Results: Final Grade 11 results (for current matric) or grade 12 Certificate (If already passed).</p>
+            <p>Parent/Guardian concern: if you are under the age of 18.</p>
+            <br>
+            <h2>3 Appliction Process</h2>
+            <p>Online Application: Visit the specific University/Collage website and follow the “Apply” link.</p>
+            <p>Fill Details: Complete all sections carefully. Double-check everything, as an incomplete application can lead to rejections.</p> 
+            <p>Pay application fee: Some institutions, like UJ and UFS, offer free online applications while others charge a fee (e.g., R 150 for Unisa).</p>
+            <p>Submit: Submit your application and keep record of all documents and the confirmation email.</p>
+            <br>
+            <h2>4 Key tips for Beginners</h2>
+            <p>Apply early: Do not for final matric results to apply, spots are limited and fill up quickly.</p> 
+            <p>Check Eligibility: Use APS calculations on the University websites to confirm you qualify for your chosen course.</p>
+            <p>Check Status: Periodically log into the student portal to track your application status (e.g., UJ, UP, Wits).</p>
+            <p>Beware of Scams: Universities do not ask for money to require space.</p>
+            <p>Understand Terms: If you receive conditional admission, your final acceptance depends on your final NSC results.</p>
+            <br>
+            <h2>For more information:</h2>
+            <h3>Here is another thing or two considering accommodations</h3>
+            <p>Accommodation</p>
+            <p>In some applications regarding tertiary institutions, you might encounter specified questions concerning whether you
+                 would like to apply for accommodation or not.</p>
+            <p>But if you would rather say YES then:</p>
+            <p>Another thing, you can get accommodation on-campus and off-campus depending on which one you prefer, but I would advise
+                 you to choose off-campus. Reason being most on-campus residents are expensive, and you would likely end up paying more
+                  or having a debt without knowing. So off-campus residents are more affordable and are even compatible with NSFAS funded
+                   students of which mostly are the ones that usually have problems with accommodation debt.</p>
+
+            <div class="donation-banner">
+                <h2> Support Our Cause</h2>
+                <p>We welcome and highly appreciate any donations to support the Edupath scheme. Whether it's links, refrences or any platforms</p>
+                <a href="index.html#contact" class="btn">Contact Us to Donate</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Edupath | Resources & Information Scarcity Platform</p>
+        <p>Building bridges, breaking barriers, and creating opportunities for all.</p>
+    </footer>
+</body>
+</html>
